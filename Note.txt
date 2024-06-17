@@ -1,0 +1,64 @@
+- Create two folders(Backend,Frontend)
+- Change Directory to Frontend then npm create vite@latest .
+- Back to the main folder then npm init -y to create package.json
+- Also include some dependencies such as 
+    - npm install 
+        express(for API/express server) 
+        mongoose(interacting to mongodb database) 
+        jsonwebtoken(for authentication) 
+        bcryptjs(hash passwords) 
+        dotenv(able create ofv files) 
+        cors(get rid of errors) 
+        cookie-parser(get cookies from their request) 
+        cloudinary(upload images for free)
+    - npm install -D nodemon(it updates everything we did in realtime)
+- Open package.json file then under the "author" create another module "type":"module",
+- Same file under the "script" delete it and change to "dev":"nodemon Backend/server.js",
+- Under the "dev" create "start":"node Backend/server.js"
+- Now the main entry file is not the index.js but rather the server.js.
+- In the Backend folder create the following folders
+    Controllers
+    DB
+    Lib/utils
+    Middleware
+    Models
+    Routes
+    View
+- server.js import express from "express"; and dotenv from "dotenv";
+- Once your done with those check if its working
+
+//try this
+import express from "express";
+import dotenv from "dotenv";
+
+const app = express();
+
+app.get("/",(req, res) =>{
+    res.send("Server is up and running");
+});
+
+app.listen(8000, () => {
+    console.log("Server is running on port 8000");
+});
+// if okay then proceed to next step, creating a clean code
+
+- In Routes create auth.routes.js(for rounting authentications)
+    import express(import express from "express";)
+    import the methods create in your auth.controller,js(import {login,logout} from "../Controllers/auth.controller.js")
+- In the Controllers create auth.controller.js(which means it'll controller what ever happens when something is in routes)
+    import User from the user.model.js this where everything that inputed in here will be sent to the user.model.js
+    create methods
+    import bcryptjs(import bcrypt from "bcryptjs";)//for hashing passwords
+- In Model create user.model.js(is where your ur user schema is)
+    import mongoose from "mongoose";
+    create method(const userSchema = new mongoose.Schema,const User = mongoose.model("User", userSchema), export default User:)
+
+
+- go to the website of mongodb
+    create new project, then create the database
+- In your main folder create .env and pastte the MONGO_URI = (LINK)
+- If pasted then proced to the server import the dotenv from "dotenv";
+    Now dotenv.cofig()//which means let the dotenv handle that mongodb
+- Now in the Backend/DB create a file for importing the database
+    import mongoose from "mongoose";
+    Create a function with async then use the try catch
